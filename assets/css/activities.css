@@ -1,0 +1,15 @@
+#tevekenyseghezNavigal {
+    min-width: 150px;
+    border-radius: 25px;
+}
+
+#delete-modal {
+    text-align: left;
+    background: white;
+    width: 50%;
+    height: 150px;
+    left: 50%;
+    top: 50%;
+    padding-right: 0px !important;
+    transform: translate(-50%, -50%);
+}

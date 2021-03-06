@@ -1,0 +1,95 @@
+.modal {
+    text-align: left;
+    background: white;
+    width: 50%;
+    height: 150px;
+    left: 50%;
+    top: 50%;
+    padding-right: 0px !important;
+    transform: translate(-50%, -50%);
+}
+
+.modal-text {
+    padding: 5px;
+}
+
+#torol {
+    margin-bottom: 15px;
+}
+
+@media (max-width: 991.98px) {
+    .modal {
+        width: 90%;
+        height: 200px;
+    }
+    .modal-footer {
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        margin: 0 0 1rem 0;
+    }
+
+    tr:nth-child(odd) {
+        background: #ccc;
+    }
+
+    .table td {
+        padding: 0 100px;
+    }
+
+    td {
+        border-bottom: 1px solid #eee;
+        position: relative;
+    }
+
+    td:before {
+        position: absolute;
+        top: 5;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+    }
+
+    td:nth-of-type(1):before {
+        content: "Élelmiszer:";
+    }
+
+    td:nth-of-type(2):before {
+        content: "Fehérje:";
+    }
+
+    td:nth-of-type(3):before {
+        content: "Szénhidrát:";
+    }
+
+    td:nth-of-type(4):before {
+        content: "Zsír:";
+    }
+
+    td:nth-of-type(5):before {
+        content: "Cukor:";
+    }
+
+    td:nth-of-type(6):before {
+        content: "Kalória:";
+    }
+}
