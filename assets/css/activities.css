@@ -13,3 +13,20 @@
     padding-right: 0px !important;
     transform: translate(-50%, -50%);
 }
+
+@media only screen and (max-width: 768px) {
+   
+    .table .activities td {
+        box-sizing: unset;
+        padding: 0 50px 0 190px;
+    }
+
+    .activities > td:nth-of-type(1):before {
+        content: "Mozgásforma neve:";
+    }
+
+    .activities > td:nth-of-type(2):before {
+        content: "Elégetett kalória/60perc:";
+    }
+
+}

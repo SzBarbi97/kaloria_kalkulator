@@ -28,68 +28,60 @@
 }
 
 @media only screen and (max-width: 768px) {
-    table,
-    thead,
-    tbody,
-    th,
-    td,
-    tr {
-        display: block;
-    }
 
-    thead tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-    }
-
-    tr {
-        margin: 0 0 1rem 0;
-    }
-
-    tr:nth-child(odd) {
-        background: #ccc;
-    }
-
-    .table td {
+    .table .food td,
+    .table .food-sum td {
+        box-sizing: unset;
         padding: 0 100px;
     }
 
-    td {
-        border-bottom: 1px solid #eee;
-        position: relative;
+    .table .activities td, 
+    .table .activities-sum td {
+        box-sizing: unset;
+        padding: 0 50px 0 170px;
     }
 
-    td:before {
-        position: absolute;
-        top: 5;
-        left: 6px;
-        width: 45%;
-        padding-right: 10px;
-        white-space: nowrap;
-    }
-
-    td:nth-of-type(1):before {
+    .food > td:nth-of-type(1):before {
         content: "Élelmiszer:";
     }
 
-    td:nth-of-type(2):before {
+    .food > td:nth-of-type(2):before,
+    .food-sum > td:nth-of-type(2):before {
         content: "Fehérje:";
     }
 
-    td:nth-of-type(3):before {
+    .food > td:nth-of-type(3):before,
+    .food-sum > td:nth-of-type(3):before {
         content: "Szénhidrát:";
     }
 
-    td:nth-of-type(4):before {
+    .food > td:nth-of-type(4):before,
+    .food-sum > td:nth-of-type(4):before {
         content: "Zsír:";
     }
 
-    td:nth-of-type(5):before {
+    .food > td:nth-of-type(5):before,
+    .food-sum > td:nth-of-type(5):before {
         content: "Cukor:";
     }
 
-    td:nth-of-type(6):before {
+    .food > td:nth-of-type(6):before,
+    .food-sum > td:nth-of-type(6):before {
         content: "Kalória:";
     }
+
+    .activities > td:nth-of-type(1):before {
+        content: "Mozgásforma neve:";
+    }
+
+    .activities > td:nth-of-type(2):before,
+    .activities-sum > td:nth-of-type(2):before {
+        content: "Sportolt idő (perc):";
+    }
+
+    .activities > td:nth-of-type(3):before,
+    .activities-sum > td:nth-of-type(3):before {
+        content: "Elégetett kalória:";
+    }
+
 }

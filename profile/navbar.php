@@ -31,7 +31,7 @@
         </ul>
 
         <div class="mr-2">
-            <button type="button" class="btn btn-primary btn-style" id="kijelentkezes">Kijelentkezés</button>
+            <button type="button" class="btn btn-primary btn-style" id="kijelentkezes" onclick="logout()">Kijelentkezés</button>
         </div>
     </div>
 </nav>

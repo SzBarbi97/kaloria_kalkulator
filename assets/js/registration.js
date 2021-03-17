@@ -114,6 +114,7 @@ function userRegistration() {
     }
 
     if (helyesMezokSzama == 9) {
+        const bmr = calculateBMR(magassag, testsuly, eletkor, nem);
         $.post(
             "controller/registration-controller.php",
             {
@@ -123,7 +124,8 @@ function userRegistration() {
                 nem: nem,
                 eletkor: eletkor,
                 magassag: magassag,
-                testsuly: testsuly
+                testsuly: testsuly,
+                bmr: bmr
             },
             function (response) {
                 if (response.success) {
