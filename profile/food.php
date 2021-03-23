@@ -1,3 +1,10 @@
+<?php
+require "../model/food-model.php";
+
+session_start();
+$foods = FoodModel::getFoods();
+?>
+
 <!DOCTYPE html>
 <html lang="hu">
 
@@ -43,20 +50,22 @@
                     <th></th>
                     <th></th>
                 <tbody>
-                    <tr class="food">
-                        <td>Tej</td>
-                        <td>10g</td>
-                        <td>10g</td>
-                        <td>10g</td>
-                        <td>10g</td>
-                        <td>2000kcal</td>
-                        <td class="text-center-without-padding">
-                            <button id="" class="btn fa fa-trash color-red" data-toggle="modal" data-target="#delete-modal"></button>
-                        </td>
-                        <td class="text-center-without-padding">
-                            <button id="" class="btn fa fa-pencil" data-toggle="modal" data-target="#edit-modal"></button>
-                        </td>
-                    </tr>
+                    <?php foreach ($foods as $food) : ?>
+                        <tr class="food">
+                            <td><?= $food["elelmiszer_neve"] ?></td>
+                            <td><?= $food["feherje"] ?></td>
+                            <td><?= $food["szenhidrat"] ?></td>
+                            <td><?= $food["zsir"] ?></td>
+                            <td><?= $food["cukor"] ?></td>
+                            <td><?= $food["kaloria"] ?></td>
+                            <td class="text-center-without-padding">
+                                <button id="" class="btn fa fa-trash color-red" data-toggle="modal" data-target="#delete-modal" onclick="setDeleteFoodId(<?= $food["id"] ?>)"></button>
+                            </td>
+                            <td class="text-center-without-padding">
+                                <button id="" class="btn fa fa-pencil" onclick="navigateToModifyFood(<?= $food["id"] ?>)"></button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
@@ -70,7 +79,7 @@
                 <div class="modal-footer">
                     <div class="row center">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-                            <button type="button" class="btn btn-danger btn-style" id="torol" data-dismiss="modal">Igen</button>
+                            <button type="button" class="btn btn-danger btn-style" id="torol" data-dismiss="modal" onclick="deleteFood()">Igen</button>
                         </div>
                         <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                             <button type="button" class="btn btn-primary btn-style" data-dismiss="modal">Mégse</button>

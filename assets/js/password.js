@@ -47,11 +47,12 @@ function password() {
         $.post(
             "../controller/password-controller.php",
             {
-                jelszo: jelszo
+                ujjelszo: ujjelszo,
+                regijelszo: regijelszo
             },
             function (response) {
                 if (!response.success) {
-                    $("#regijelszoHiba").html("Nem egyezik a megadott jelszó a regisztrált jelszóval!")
+                    $("#regijelszoHiba").html("Nem egyezik a megadott jelszó a regisztrált jelszóval!");
                     $("#regijelszoHiba").show();
                 }
             }

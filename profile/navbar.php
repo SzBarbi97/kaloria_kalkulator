@@ -1,3 +1,8 @@
+<?php
+require_once("../model/user-model.php");
+
+$currentUser = UserModel::getCurrentUser();
+?>
 <nav class="font-family navbar navbar-expand-lg navbar-dark bg-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -29,6 +34,10 @@
                 </div>
             </div>
         </ul>
+
+        <div class="mr-2 text-white mt-3">
+            <p><?php echo $currentUser["teljes_nev"] ?></p>
+        </div>
 
         <div class="mr-2">
             <button type="button" class="btn btn-primary btn-style" id="kijelentkezes" onclick="logout()">Kijelentkezés</button>

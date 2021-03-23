@@ -1,5 +1,5 @@
 <?php
-require "../database.php";
+require_once("../database.php");
 
 class UserModel
 {
@@ -66,6 +66,22 @@ class UserModel
         return $res->fetch_assoc();
     }
 
+    public static function getCurrentUserId()
+    {
+        $database = Database::getInstance();
+        $email = $_SESSION["email"];
+
+        $sql = sprintf("SELECT id
+        FROM felhasznalo 
+        WHERE email = '%s'", $email);
+
+        $res = $database->query($sql);
+
+        $row = $res->fetch_assoc();
+
+        return $row["id"];
+    }
+
     public static function modifyBasicData($magassag, $testsuly, $eletkor, $bmr)
     {
         $database = Database::getInstance();
@@ -90,9 +106,15 @@ class UserModel
         $database->query($sql);
     }
 
-    public static function modifyPasswordData()
+    public static function modifyPasswordData($jelszo)
     {
         $database = Database::getInstance();
         $email = $_SESSION["email"];
+
+        $sql = sprintf("UPDATE felhasznalo
+        SET jelszo = '%s'
+        WHERE email = '%s'", md5($jelszo), $email);
+
+        $database->query($sql);
     }
 }

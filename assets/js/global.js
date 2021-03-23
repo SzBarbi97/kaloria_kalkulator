@@ -12,6 +12,13 @@ function calculateBMR(magassag, testsuly, eletkor, nem) {
 }
 
 function logout() {
-    // todo : session kezelés
-    window.location.href = "../index.php";
+    $.get(
+        "../controller/logout-controller.php",
+        {},
+        function (response) {
+            if (response.success) {
+                window.location.href = "../index.php";
+            }
+        }
+    )
 }

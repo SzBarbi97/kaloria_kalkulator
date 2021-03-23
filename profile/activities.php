@@ -1,3 +1,10 @@
+<?php
+require "../model/activity-model.php";
+
+session_start();
+$activities = ActivityModel::getActivities();
+?>
+
 <!DOCTYPE html>
 <html lang="hu">
 
@@ -23,7 +30,7 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col text-right">
-                <button type=" button" class="btn btn-primary" id="tevekenyseghezNavigal" onclick="navigateToNewActivitie()">Új tevékenység hozzáadása</button>
+                <button type=" button" class="btn btn-primary" id="tevekenyseghezNavigal" onclick="navigateToNewActivity()">Új tevékenység hozzáadása</button>
             </div>
         </div>
     </div>
@@ -34,20 +41,23 @@
             <table>
                 <thead>
                     <th class="font-wight-bold pr-3">Mozgásforma neve</th>
-                    <th class="font-wight-bold pr-3">Elégetett kalória/60perc</th>
+                    <th class="font-wight-bold pr-3">Elégetett kalória / 60perc</th>
                     <th></th>
                     <th></th>
                 <tbody>
-                    <tr class="activities">
-                        <td>Futás</td>
-                        <td>300kcal</td>
-                        <td class="text-center-without-padding">
-                            <button id="" class="btn fa fa-trash color-red" data-toggle="modal" data-target="#delete-modal"></button>
-                        </td>
-                        <td class="text-center-without-padding">
-                            <button id="" class="btn fa fa-pencil" data-toggle="modal" data-target="#edit-modal"></button>
-                        </td>
-                    </tr>
+                    <?php foreach ($activities as $activity) : ?>
+                        <tr class="activities">
+                            <td><?= $activity["mozgasforma_neve"] ?></td>
+                            <td><?= $activity["elegetett_kaloria"] . " kcal" ?></td>
+                            <td class="text-center-without-padding">
+                                <button class="btn fa fa-trash color-red" data-toggle="modal" data-target="#delete-modal" onclick="setDeleteActivityId(<?= $activity["id"] ?>)">
+                                </button>
+                            </td>
+                            <td class="text-center-without-padding">
+                                <button class="btn fa fa-pencil" onclick="navigateToModifyActivity(<?= $activity["id"] ?>)"></button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
@@ -61,7 +71,7 @@
                 <div class="modal-footer">
                     <div class="row center">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-                            <button type="button" class="btn btn-danger btn-style" id="torol" data-dismiss="modal">Igen</button>
+                            <button type="button" class="btn btn-danger btn-style" id="torol" data-dismiss="modal" onclick="deleteActivity()">Igen</button>
                         </div>
                         <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                             <button type="button" class="btn btn-primary btn-style" data-dismiss="modal">Mégse</button>

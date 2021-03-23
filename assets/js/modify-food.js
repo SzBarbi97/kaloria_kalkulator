@@ -1,4 +1,4 @@
-function newFood() {
+function modifyFood(foodId) {
     const termekNeve = $("#termek-neve").val();
     const feherje = $("#feherje").val();
     const szenhidrat = $("#szenhidrat").val();
@@ -96,7 +96,7 @@ function newFood() {
 
     if (helyesMezokSzama == 6) {
         $.post(
-            "../controller/new-food-controller.php",
+            "../controller/modify-food-controller.php",
             {
                 termekNeve: termekNeve,
                 feherje: feherje,
@@ -104,16 +104,11 @@ function newFood() {
                 zsir: zsir,
                 cukor: cukor,
                 kaloria: kaloria,
+                foodId: foodId
             },
             function (response) {
                 if (response.success) {
                     window.location.href = "food.php";
-                } else {
-                    if (response.error == "termekNeve") {
-                        $("#termek-neve").addClass("is-invalid");
-                        $("#termekHiba").html("Ez a termék már szerepel az adatbázisban!");
-                        $("#termekHiba").show();
-                    }
                 }
             }
         )

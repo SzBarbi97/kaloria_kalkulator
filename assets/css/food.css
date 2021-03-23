@@ -32,17 +32,6 @@
     border-radius: 25px;
 }
 
-#edit-modal {
-    text-align: left;
-    background: white;
-    width: 50%;
-    height: 90%;
-    left: 50%;
-    top: 50%;
-    padding-right: 0px !important;
-    transform: translate(-50%, -50%);
-}
-
 @media (max-width: 991.98px) {
     #edit-modal {
         width: 90%;

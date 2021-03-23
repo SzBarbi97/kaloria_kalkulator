@@ -3,6 +3,17 @@ require "../model/user-model.php";
 
 session_start();
 
-$jelszo = $_POST["jelszo"];
+header('Content-Type: application/json');
 
-$userDb = UserModel::checkUser($email, $jelszo);
+$email = $_SESSION["email"];
+$regijelszo = $_POST["regijelszo"];
+$ujjelszo = $_POST["ujjelszo"];
+
+$userDb = UserModel::checkUser($email, $regijelszo);
+
+if ($userDb == 1) {
+    $save = UserModel::modifyPasswordData($ujjelszo);
+    print(json_encode(array("success" => true)));
+} else {
+    print(json_encode(array("success" => false)));
+}

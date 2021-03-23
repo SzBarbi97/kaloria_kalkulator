@@ -1,6 +1,23 @@
 <?php
+require "../model/food-model.php";
+
 session_start();
+
+$foodId;
+if (isset($_GET["id"])) {
+    $foodId = $_GET["id"];
+} else {
+    header("Location: ./food.php");
+}
+
+$food = FoodModel::getFoodById($foodId);
+
+if (!$food) {
+    header("Location: ./food.php");
+}
+
 ?>
+
 <!DOCTYPE html>
 <html lang="hu">
 
@@ -9,7 +26,7 @@ session_start();
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/global.js"></script>
-    <script src="../assets/js/new-food.js"></script>
+    <script src="../assets/js/modify-food.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="../assets/css/global.css">
@@ -20,7 +37,7 @@ session_start();
     <?php require_once("navbar.php"); ?>
 
     <div class="text-white mt-5">
-        <h1 class="text-center font-weight-bold">Új étel hozzáadása</h1>
+        <h1 class="text-center font-weight-bold">Élelmiszer módosítása</h1>
     </div>
 
     <div class="container rounded center text-center bg-white border font-weight-bold mt-5 mb-5">
@@ -34,7 +51,11 @@ session_start();
         </div>
         <div class="row">
             <div class="col-12">
-                <input type="text" class="form-control input-field max-width-500px center" id="termek-neve">
+                <?php
+                $elelmiszer_neve = $food["elelmiszer_neve"];
+                echo '<input type="text" class="form-control input-field max-width-500px center" id="termek-neve" value="'
+                    . $elelmiszer_neve . '">'
+                ?>
             </div>
             <div class="invalid-feedback" id="termekHiba"></div>
         </div>
@@ -46,7 +67,11 @@ session_start();
         </div>
         <div class="row">
             <div class="col-12">
-                <input type="text" class="form-control input-field max-width-500px center" id="feherje">
+                <?php
+                $feherje = $food["feherje"];
+                echo '<input type="text" class="form-control input-field max-width-500px center" id="feherje" value="'
+                    . $feherje . '">'
+                ?>
             </div>
             <div class="invalid-feedback" id="feherjeHiba"></div>
         </div>
@@ -58,7 +83,11 @@ session_start();
         </div>
         <div class="row">
             <div class="col-12">
-                <input type="text" class="form-control input-field max-width-500px center" id="szenhidrat">
+                <?php
+                $szenhidrat = $food["szenhidrat"];
+                echo '<input type="text" class="form-control input-field max-width-500px center" id="szenhidrat" value="'
+                    . $szenhidrat . '">'
+                ?>
             </div>
             <div class="invalid-feedback" id="szenhidratHiba"></div>
         </div>
@@ -70,7 +99,11 @@ session_start();
         </div>
         <div class="row">
             <div class="col-12">
-                <input type="text" class="form-control input-field max-width-500px center" id="zsir">
+                <?php
+                $zsir = $food["zsir"];
+                echo '<input type="text" class="form-control input-field max-width-500px center" id="zsir" value="'
+                    . $zsir . '">'
+                ?>
             </div>
             <div class="invalid-feedback" id="zsirHiba"></div>
         </div>
@@ -82,7 +115,11 @@ session_start();
         </div>
         <div class="row">
             <div class="col-12">
-                <input type="text" class="form-control input-field max-width-500px center" id="cukor">
+                <?php
+                $cukor = $food["cukor"];
+                echo '<input type="text" class="form-control input-field max-width-500px center" id="cukor" value="'
+                    . $cukor . '">'
+                ?>
             </div>
             <div class="invalid-feedback" id="cukorHiba"></div>
         </div>
@@ -94,12 +131,16 @@ session_start();
         </div>
         <div class="row">
             <div class="col-12">
-                <input type="text" class="form-control input-field max-width-500px center" id="kaloria">
+                <?php
+                $kaloria = $food["kaloria"];
+                echo '<input type="text" class="form-control input-field max-width-500px center" id="kaloria" value="'
+                    . $kaloria . '">'
+                ?>
             </div>
             <div class="invalid-feedback" id="kaloriaHiba"></div>
         </div>
         <div class="text-center mt-4 mb-3">
-            <button type="button" class="btn btn-success btn-style max-width-500px" id="hozzaad" onclick="newFood()">Hozzáad</button>
+            <button type="button" class="btn btn-success btn-style max-width-500px" id="hozzaad" onclick="modifyFood(<?php echo $foodId ?>)">Módosítás</button>
         </div>
     </div>
 </body>

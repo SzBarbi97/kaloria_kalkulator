@@ -45,28 +45,32 @@
         content: "Élelmiszer:";
     }
 
-    .food > td:nth-of-type(2):before,
-    .food-sum > td:nth-of-type(2):before {
-        content: "Fehérje:";
+    .food > td:nth-of-type(2):before {
+        content: "Mennyiség:";
     }
 
     .food > td:nth-of-type(3):before,
     .food-sum > td:nth-of-type(3):before {
-        content: "Szénhidrát:";
+        content: "Fehérje:";
     }
 
     .food > td:nth-of-type(4):before,
     .food-sum > td:nth-of-type(4):before {
-        content: "Zsír:";
+        content: "Szénhidrát:";
     }
 
     .food > td:nth-of-type(5):before,
     .food-sum > td:nth-of-type(5):before {
-        content: "Cukor:";
+        content: "Zsír:";
     }
 
     .food > td:nth-of-type(6):before,
     .food-sum > td:nth-of-type(6):before {
+        content: "Cukor:";
+    }
+
+    .food > td:nth-of-type(7):before,
+    .food-sum > td:nth-of-type(7):before {
         content: "Kalória:";
     }
 

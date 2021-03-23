@@ -1,3 +1,11 @@
+<?php
+require_once("../model/history-model.php");
+
+session_start();
+
+$histories = HistoryModel::getHistories();
+?>
+
 <!DOCTYPE html>
 <html lang="hu">
 
@@ -33,15 +41,17 @@
                     <th class="font-wight-bold pr-3">Kalória</th>
                     <th class="font-wight-bold pr-3">Elégetett kalória</th>
                 <tbody>
-                    <tr class="history">
-                        <td>2020.04.30.</td>
-                        <td>Tej</td>
-                        <td>10 g</td>
-                        <td>10 g</td>
-                        <td>10 g</td>
-                        <td>10 g</td>
-                        <td>2000 kcal</td>
-                    </tr>
+                    <?php foreach ($histories as $history) : ?>
+                        <tr class="history">
+                            <td><?= $history["datum"] ?></td>
+                            <td><?= $history["feherje"] . ' g' ?></td>
+                            <td><?= $history["szenhidrat"] . ' g' ?></td>
+                            <td><?= $history["zsir"] . ' g' ?></td>
+                            <td><?= $history["cukor"] . ' g' ?></td>
+                            <td><?= $history["kaloria"] . ' kcal' ?></td>
+                            <td><?= $history["elegetett_kaloria"] . ' kcal' ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

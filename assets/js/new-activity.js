@@ -31,6 +31,24 @@ function newActivitie() {
     }
 
     if (helyesMezokSzama == 2) {
+        $.post(
+            "../controller/new-activity-controller.php",
+            {
+                tevekenysegNeve: tevekenysegNeve,
+                elegetettKaloria: elegetettKaloria
+            },
+            function (response) {
+                if (response.success) {
+                    window.location.href = "activities.php";
+                } else {
+                    if (response.error == "tevekenysegNeve") {
+                        $("#tevekenyseg-neve").addClass("is-invalid");
+                        $("#tevekenysegHiba").html("Ez a tevékenység már szerepel az adatbázisban!");
+                        $("#tevekenysegHiba").show();
+                    }
+                }
+            }
+        )
 
     }
 }
